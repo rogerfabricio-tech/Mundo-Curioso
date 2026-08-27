@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Curioso — Blog Escolar</title>
+    <style>
+        /* ===== ESTILOS GERAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --cor-primaria: #4f46e5;
+            --cor-secundaria: #7c3aed;
+            --cor-fundo: #f8fafc;
+            --cor-cartao: #ffffff;
+            --cor-texto: #1e293b;
+            --cor-texto-claro: #64748b;
+            --cor-curtir: #10b981;
+            --cor-descurtir: #ef4444;
+            --sombra: 0 4px 20px rgba(0,0,0,0.08);
+            --raio: 16px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
+            min-height: 100vh;
+            color: var(--cor-texto);
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--sombra);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ===== CONTEÚDO PRINCIPAL ===== */
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.2rem;
+        }
+
+        .post {
+            background: var(--cor-cartao);
+            border-radius: var(--raio);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--sombra);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);
+        }
+
+        .post h2 {
+            color: var(--cor-primaria);
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .data {
+            font-size: 0.9rem;
+            color: var(--cor-texto-claro);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .post p {
+            line-height: 1.8;
+            color: var(--cor-texto);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* ===== SISTEMA DE CURTIDAS E DESCUTIDAS ===== */
+        .area-curtidas {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .botao-curtir, .botao-descurtir {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f1f5f9;
+            color: var(--cor-texto);
+        }
+
+        .botao-curtir:hover {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .botao-curtir.ativo {
+            background: #d1fae5;
+            color: var(--cor-curtir);
+            font-weight: 600;
+        }
+
+        .botao-descurtir:hover {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .botao-descurtir.ativo {
+            background: #fee2e2;
+            color: var(--cor-descurtir);
+            font-weight: 600;
+        }
+
+        .contador {
+            font-weight: 500;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--cor-texto-claro);
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.7rem; }
+            .post { padding: 1.5rem; }
+            .area-curtidas { gap: 0.8rem; }
+            .botao-curtir, .botao-descurtir { padding: 0.5rem 0.9rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌍 Mundo Curioso</h1>
+        <p>Explorando conhecimentos e compartilhando ideias</p>
+    </header>
+
+    <main>
+        <!-- POSTAGEM 1 -->
+        <article class="post" data-id="1">
+            <h2>A Importância da Reciclagem</h2>
+            <span class="data">27 de Agosto de 2026</span>
+            <p>A reciclagem é uma das formas mais simples e eficazes de cuidarmos do nosso planeta. Ao separarmos o lixo e reutilizarmos materiais como papel, plástico, vidro e metal, reduzimos a quantidade de resíduos nos aterros sanitários e economizamos recursos naturais. Além disso, a reciclagem gera empregos e ajuda a construir um futuro mais sustentável para todos nós. Pequenas atitudes no dia a dia fazem uma grande diferença!</p>
+            
+            <div class="area-curtidas">
+                <button class="botao-curtir" onclick="curtir(this)">
+                    👍 <span class="contador">12</span>
+                </button>
+                <button class="botao-descurtir" onclick="descurtir(this)">
+                    👎 <span class="contador">2</span>
+                </button>
+            </div>
+        </article>
+
+        <!-- POSTAGEM 2 -->
+        <article class="post" data-id="2">
+            <h2>Por Que Ler É Tão Importante?</h2>
+            <span class="data">20 de Agosto de 2026</span>
+            <p>A leitura abre portas para mundos novos, estimula a imaginação e melhora nosso vocabulário e raciocínio. Quem lê com frequência se comunica melhor, tem mais facilidade em resolver problemas e desenvolve empatia ao conhecer histórias e realidades diferentes. Ler é como viajar sem sair de casa! Que tal começar um livro hoje mesmo?</p>
+            
+            <div class="area-curtidas">
+                <button class="botao-curtir" onclick="curtir(this)">
+                    👍 <span class="contador">18</span>
+                </button>
+                <button class="botao-descurtir" onclick="descurtir(this)">
+                    👎 <span class="contador">1</span>
+                </button>
+            </div>
+        </article>
+
+        <!-- POSTAGEM 3 -->
+        <article class="post" data-id="3">
+            <h2>Os Benefícios da Água para a Saúde</h2>
+            <span class="data">15 de Agosto de 2026</span>
+            <p>A água é essencial para a vida! Ela ajuda na digestão, regula a temperatura do corpo, transporta nutrientes e elimina toxinas. Beber água regularmente — cerca de 2 litros por dia — melhora a pele, a concentração e nos dá mais energia. Lembre-se: sem água, não há saúde nem vida. Beba água e cuide de você!</p>
+            
+            <div class="area-curtidas">
+                <button class="botao-curtir" onclick="curtir(this)">
+                    👍 <span class="contador">25</span>
+                </button>
+                <button class="botao-descurtir" onclick="descurtir(this)">
+                    👎 <span class="contador">0</span>
+                </button>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2026 Mundo Curioso — Trabalho Escolar • Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // ===== SISTEMA DE CURTIDAS E DESCUTIDAS =====
+
+        function curtir(botao) {
+            const contador = botao.querySelector('.contador');
+            let valor = parseInt(contador.textContent);
+            const botaoPai = botao.parentElement;
+            const botaoDescurtir = botaoPai.querySelector('.botao-descurtir');
+
+            // Se já estava ativo → descurtir
+            if (botao.classList.contains('ativo')) {
+                botao.classList.remove('ativo');
+                contador.textContent = valor - 1;
+            } else {
+                // Ativar curtir
+                botao.classList.add('ativo');
+                contador.textContent = valor + 1;
+                // Remover descurtir se estiver ativo
+                if (botaoDescurtir.classList.contains('ativo')) {
+                    const contadorDesc = botaoDescurtir.querySelector('.contador');
+                    botaoDescurtir.classList.remove('ativo');
+                    contadorDesc.textContent = parseInt(contadorDesc.textContent) - 1;
+                }
+            }
+        }
+
+        function descurtir(botao) {
+            const contador = botao.querySelector('.contador');
+            let valor = parseInt(contador.textContent);
+            const botaoPai = botao.parentElement;
+            const botaoCurtir = botaoPai.querySelector('.botao-curtir');
+
+            // Se já estava ativo → remover descurtida
+            if (botao.classList.contains('ativo')) {
+                botao.classList.remove('ativo');
+                contador.textContent = valor - 1;
+            } else {
+                // Ativar descurtir
+                botao.classList.add('ativo');
+                contador.textContent = valor + 1;
+                // Remover curtida se estiver ativa
+                if (botaoCurtir.classList.contains('ativo')) {
+                    const contadorCurt = botaoCurtir.querySelector('.contador');
+                    botaoCurtir.classList.remove('ativo');
+                    contadorCurt.textContent = parseInt(contadorCurt.textContent) - 1;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
